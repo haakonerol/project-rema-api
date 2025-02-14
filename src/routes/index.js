@@ -15,4 +15,10 @@ router.use("/categories", require("./categoryRouter"));
 
 router.use("/firms", require("./firmRouter"));
 
+router.use("/products", require("./productRouter"));
+
+router.use("/sales", require("./saleRouter"));
+
+router.use("/purchases", require("./purchaseRouter"));
+
 module.exports = router;
