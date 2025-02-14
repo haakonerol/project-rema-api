@@ -21,6 +21,28 @@ dbConnection()
 /*------------------------------------------------------- */
 app.use(express.json())
 /*------------------------------------------------------- */
+// Middlewares:
+app.use(require('./src/middlewares/searchSortPagination')) 
+
+/*------------------------------------------------------- */
+// Routes:
+
+// HomePath:
+app.all('/', (req, res) => {
+    res.send({
+        error: false,
+        message: 'Welcome to Stock Management API',
+        documents: {
+            swagger: '/documents/swagger',
+            redoc: '/documents/redoc',
+            json: '/documents/json',
+        },
+        user: req.user
+    })
+})
+
+app.use(require('./src/routes/index')) 
+/*------------------------------------------------------- */
 // errorHandler
 app.use(require('./src/middlewares/errorHandler'))
 

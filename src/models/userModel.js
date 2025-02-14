@@ -83,7 +83,7 @@ const UserSchema = new mongoose.Schema({
     }
 
 },{
-    collation: 'users',
+    collection: 'users',
     timestamps: true
 });
 /* ------------------------------------------------------- */
