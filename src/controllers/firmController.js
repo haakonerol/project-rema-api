@@ -3,13 +3,13 @@
     | PROJECT REMA API | NODEJS / EXPRESS |
 ------------------------------------------------------- */
 
-const User = require("../models/userModel");
+const Firm = require("../models/firmModel");
 
 module.exports = {
   list: async (req, res) => {
     /*
-       #swagger.tags = ["Users"]
-       #swagger.summary = "List Users"
+       #swagger.tags = ["Firms"]
+       #swagger.summary = "List Firms"
        #swagger.description = `
            You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint.
            <ul> Examples:
@@ -21,33 +21,29 @@ module.exports = {
        `
     */
 
-    const data = await res.getModelList(User);
+    const data = await res.getModelList(Firm);
 
     res.status(200).send({
       error: false,
-      details: await res.getModelListDetails(User),
+      details: await res.getModelListDetails(Firm),
       data,
     });
   },
 
   create: async (req, res) => {
     /*
-      #swagger.tags = ["Users"]
-      #swagger.summary = "Create User"
+      #swagger.tags = ["Firms"]
+      #swagger.summary = "Create Firm"
       #swagger.parameters['body'] = {
           in: 'body',
           required: true,
           schema: {
-              "username": "test",
-              "password": "1234",
-              "email": "test@site.com",
-              "firstName": "test",
-              "lastName": "test",
+              $ref: "#/definitions/Firm"
           }
        }
     */
 
-    const data = await User.create(req.body);
+    const data = await Firm.create(req.body);
 
     res.status(201).send({
       error: false,
@@ -57,11 +53,11 @@ module.exports = {
 
   read: async (req, res) => {
     /*
-      #swagger.tags = ["Users"]
-      #swagger.summary = "Get Single User"
+      #swagger.tags = ["Firms"]
+      #swagger.summary = "Get Single Firm"
     */
 
-    const data = await User.findOne({ _id: req.params.id });
+    const data = await Firm.findOne({ _id: req.params.id });
 
     res.status(200).send({
       error: false,
@@ -71,39 +67,35 @@ module.exports = {
 
   update: async (req, res) => {
     /*
-      #swagger.tags = ["Users"]
-      #swagger.summary = "Update User"
+      #swagger.tags = ["Firms"]
+      #swagger.summary = "Update Firm"
       #swagger.parameters['body'] = {
           in: 'body',
           required: true,
           schema: {
-              "username": "test",
-              "password": "1234",
-              "email": "test@site.com",
-              "firstName": "test",
-              "lastName": "test",
+              $ref: "#/definitions/Firm"
           }
       }
     */
 
-    const data = await User.updateOne({ _id: req.params.id }, req.body, {
+    const data = await Firm.updateOne({ _id: req.params.id }, req.body, {
       runValidators: true,
     });
 
     res.status(202).send({
       error: false,
       data,
-      new: await User.findOne({ _id: req.params.id }),
+      new: await Firm.findOne({ _id: req.params.id }),
     });
   },
 
   delete: async (req, res) => {
     /*
-      #swagger.tags = ["Users"]
-      #swagger.summary = "Delete User"
+      #swagger.tags = ["Firms"]
+      #swagger.summary = "Delete Firm"
     */
 
-    const data = await User.deleteOne({ _id: req.params.id });
+    const data = await Firm.deleteOne({ _id: req.params.id });
 
     res.status(data.deletedCount ? 204 : 404).send({
       error: !data.deletedCount,

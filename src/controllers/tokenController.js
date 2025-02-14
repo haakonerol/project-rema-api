@@ -11,7 +11,7 @@ module.exports = {
        #swagger.ignore = true
     */
 
-    const data = await res.getModelList(Token);
+    const data = await res.getModelList(Token, "userId");
 
     res.status(200).send({
       error: false,
@@ -38,7 +38,7 @@ module.exports = {
         #swagger.ignore = true
     */
 
-    const data = await Token.findOne({ _id: req.params.id });
+    const data = await Token.findOne({ _id: req.params.id }).populate("userId");
 
     res.status(200).send({
       error: false,

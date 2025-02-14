@@ -1,5 +1,4 @@
 "use strict"
-const { boolean } = require('webidl-conversions')
 /* -------------------------------------------------------
     | PROJECT REMA API | NODEJS / EXPRESS |
 ------------------------------------------------------- */
