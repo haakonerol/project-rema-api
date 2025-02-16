@@ -85,7 +85,8 @@ const UserSchema = new mongoose.Schema({
     collection: 'users',
     timestamps: true
 });
-/* ------------------------------------------------------- */
+/* ------------------------------------------------------- *
+//? Moved to userController
 // https://mongoosejs.com/docs/middleware.html
 const passwordEncrypt = require('../helpers/passwordEncrypt.js')
 
@@ -114,7 +115,6 @@ UserSchema.pre(['save', 'updateOne'], function(next){
                 // create:
                 this.password = passwordEncrypt(data.password)
             }
-
 
             next();
 

@@ -1,9 +1,40 @@
 "use strict";
+
 /* -------------------------------------------------------
     | PROJECT REMA API | NODEJS / EXPRESS |
 ------------------------------------------------------- */
 
 const User = require("../models/userModel");
+const passwordEncrypt = require("../helpers/passwordEncrypt");
+
+/*------------------------------------------------------- */
+// data = req.body
+const checkUserEmailAndPassword = function(data){
+
+  // -- email control:
+  const isEmailValid = data.email ? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email) : true
+  
+      if(isEmailValid){
+          // -- password control:
+           const isPasswordValid = data.password ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password) : true
+  
+          if(isPasswordValid){
+  
+              data.password = passwordEncrypt(data.password)
+
+              return data;
+  
+          }else{
+  
+             throw new Error ('Password is not valid.')
+          }
+      }else{
+        
+        throw new Error('Email is not valid.')
+      }
+};
+
+/*------------------------------------------------------- */
 
 module.exports = {
   list: async (req, res) => {
@@ -47,7 +78,8 @@ module.exports = {
        }
     */
 
-    const data = await User.create(req.body);
+    // const data = await User.create(req.body);
+    const data = await User.create(checkUserEmailAndPassword(req.body));
 
     res.status(201).send({
       error: false,
@@ -86,9 +118,8 @@ module.exports = {
       }
     */
 
-    const data = await User.updateOne({ _id: req.params.id }, req.body, {
-      runValidators: true,
-    });
+    //  const data = await User.updateOne({ _id: req.params.id }, req.body, {runValidators: true,});
+     const data = await User.updateOne({ _id: req.params.id }, checkUserEmailAndPassword(req.body), {runValidators: true,});
 
     res.status(202).send({
       error: false,

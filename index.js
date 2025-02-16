@@ -24,6 +24,8 @@ app.use(express.json())
 // Middlewares:
 app.use(require('./src/middlewares/searchSortPagination')) 
 
+app.use(require('./src/middlewares/authentication'))
+
 /*------------------------------------------------------- */
 // Routes:
 
@@ -31,7 +33,7 @@ app.use(require('./src/middlewares/searchSortPagination'))
 app.all('/', (req, res) => {
     res.send({
         error: false,
-        message: 'Welcome to Stock Management API',
+        message: 'Welcome to Project Rema API',
         documents: {
             swagger: '/documents/swagger',
             redoc: '/documents/redoc',
