@@ -87,34 +87,48 @@ const UserSchema = new mongoose.Schema({
 });
 /* ------------------------------------------------------- */
 // https://mongoosejs.com/docs/middleware.html
+const passwordEncrypt = require('../helpers/passwordEncrypt.js')
 
-UserSchema.pre('save',function(next){
+UserSchema.pre(['save', 'updateOne'], function(next){
 
     // console.log('pre save initiated');
     // console.log(this);
-    const data = this
+    const data = this?._update ?? this // Nullish coalescing
     
     // -- email control:
     const isEmailValid = data.email ? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email) : true
 
     if(isEmailValid){
 
-        // console.log('email is OK');
+         console.log('email is OK');
 
-        const isPasswordValid = data.password ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password) : true
+         const isPasswordValid = data.password ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password) : true
 
         if(isPasswordValid){
 
+            if(this?._update){
+                //update:
+                this._update.password = passwordEncrypt(data.password)
+
+            }else{
+                // create:
+                this.password = passwordEncrypt(data.password)
+            }
+
+
+            next();
+
+        }else{
+
+            next(new Error ('Password is not valid'))
         }
+        
 
     }else{
 
         // throw new Error('email is not validated')
         next(new Error('Email is not valid'))
     }
-
-    
-    
 
 })
 
