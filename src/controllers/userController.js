@@ -21,7 +21,7 @@ module.exports = {
        `
     */
 
-    const data = await res.getModelList(User);
+    const data = await res.getModelList(User,null,{_id: 0, __v:0, createdAt:0, updatedAt: 0});
 
     res.status(200).send({
       error: false,

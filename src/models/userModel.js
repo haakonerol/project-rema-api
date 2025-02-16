@@ -86,6 +86,39 @@ const UserSchema = new mongoose.Schema({
     timestamps: true
 });
 /* ------------------------------------------------------- */
+// https://mongoosejs.com/docs/middleware.html
+
+UserSchema.pre('save',function(next){
+
+    // console.log('pre save initiated');
+    // console.log(this);
+    const data = this
+    
+    // -- email control:
+    const isEmailValid = data.email ? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email) : true
+
+    if(isEmailValid){
+
+        // console.log('email is OK');
+
+        const isPasswordValid = data.password ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password) : true
+
+        if(isPasswordValid){
+
+        }
+
+    }else{
+
+        // throw new Error('email is not validated')
+        next(new Error('Email is not valid'))
+    }
+
+    
+    
+
+})
+
+/* ------------------------------------------------------- */
 // Exports:
 module.exports = mongoose.model('User', UserSchema)
 
