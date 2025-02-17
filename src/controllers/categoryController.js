@@ -8,7 +8,7 @@ const Category = require("../models/categoryModel");
 module.exports = {
   list: async (req, res) => {
     /*
-       #swagger.tags = ["Categorys"]
+       #swagger.tags = ["Categories"]
        #swagger.summary = "List Categorys"
        #swagger.description = `
            You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint.
@@ -32,7 +32,7 @@ module.exports = {
 
   create: async (req, res) => {
     /*
-      #swagger.tags = ["Categorys"]
+      #swagger.tags = ["Categories"]
       #swagger.summary = "Create Category"
       #swagger.parameters['body'] = {
           in: 'body',
@@ -53,7 +53,7 @@ module.exports = {
 
   read: async (req, res) => {
     /*
-      #swagger.tags = ["Categorys"]
+      #swagger.tags = ["Categories"]
       #swagger.summary = "Get Single Category"
     */
 
@@ -67,7 +67,7 @@ module.exports = {
 
   update: async (req, res) => {
     /*
-      #swagger.tags = ["Categorys"]
+      #swagger.tags = ["Categories"]
       #swagger.summary = "Update Category"
       #swagger.parameters['body'] = {
           in: 'body',
@@ -91,7 +91,7 @@ module.exports = {
 
   delete: async (req, res) => {
     /*
-      #swagger.tags = ["Categorys"]
+      #swagger.tags = ["Categories"]
       #swagger.summary = "Delete Category"
     */
 

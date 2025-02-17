@@ -20,6 +20,17 @@ dbConnection()
 
 /*------------------------------------------------------- */
 app.use(express.json())
+
+app.use('/documents/json', (req, res ) => {
+    res.sendFile('swagger.json', { root: './src/configs'})
+})
+
+const swaggerUi = require('swagger-ui-express')
+const swaggerJson = require('./src/configs/swagger.json')
+app.use('/documents/swagger', swaggerUi.serve, swaggerUi.setup(swaggerJson, {}))
+
+const redoc = require('redoc-express')
+app.use('/documents/redoc', redoc({ specUrl: '/documents/json', title: 'Redoc UI' }))
 /*------------------------------------------------------- */
 // Middlewares:
 app.use(require('./src/middlewares/searchSortPagination')) 
