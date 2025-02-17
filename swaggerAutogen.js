@@ -56,13 +56,13 @@ const document ={
     //simple token settings:
     securityDefinitions: {
         Token: {
-            type: 'apikey',
+            type: 'apiKey',
             in: 'header',
             name: 'Authorization',
             description: 'Simple Token Authentication * Example: <b>Token ...tokenKey...</b>'
         },
         Bearer: {
-            type: '',
+            type: 'apiKey',
             in: 'header',
             name: 'Authorization',
             description: 'JWT Authentication * Example: <b>Beare ...accessToken...</b>'
@@ -78,7 +78,6 @@ const document ={
         "Product": require("./src/models/productModel").schema.obj,
         "Purchase": require("./src/models/productModel").schema.obj,
         "Sale": require("./src/models/saleModel").schema.obj,
-        "Token": require("./src/models/tokenModel").schema.obj,
     }
 }
 

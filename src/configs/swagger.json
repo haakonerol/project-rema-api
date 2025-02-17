@@ -20,13 +20,13 @@
   ],
   "securityDefinitions": {
     "Token": {
-      "type": "apikey",
+      "type": "apiKey",
       "in": "header",
       "name": "Authorization",
       "description": "Simple Token Authentication * Example: <b>Token ...tokenKey...</b>"
     },
     "Bearer": {
-      "type": "",
+      "type": "apiKey",
       "in": "header",
       "name": "Authorization",
       "description": "JWT Authentication * Example: <b>Beare ...accessToken...</b>"
@@ -1619,59 +1619,6 @@
           "properties": {
             "type": {
               "type": "function"
-            }
-          }
-        }
-      }
-    },
-    "Token": {
-      "type": "object",
-      "properties": {
-        "userId": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "function"
-            },
-            "ref": {
-              "type": "string",
-              "example": "User"
-            },
-            "required": {
-              "type": "boolean",
-              "example": true
-            },
-            "index": {
-              "type": "boolean",
-              "example": true
-            },
-            "unique": {
-              "type": "boolean",
-              "example": true
-            }
-          }
-        },
-        "token": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "function"
-            },
-            "trim": {
-              "type": "boolean",
-              "example": true
-            },
-            "required": {
-              "type": "boolean",
-              "example": true
-            },
-            "index": {
-              "type": "boolean",
-              "example": true
-            },
-            "unique": {
-              "type": "boolean",
-              "example": true
             }
           }
         }
