@@ -14,24 +14,24 @@ const checkUserEmailAndPassword = function(data){
   // -- email control:
   const isEmailValid = data.email ? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email) : true
   
-      if(isEmailValid){
+  if(isEmailValid){
           // -- password control:
-           const isPasswordValid = data.password ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password) : true
+     const isPasswordValid = data.password ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password) : true
   
-          if(isPasswordValid){
+     if(isPasswordValid){
   
-              data.password = passwordEncrypt(data.password)
+       data.password = passwordEncrypt(data.password)
 
-              return data;
+      return data;
   
-          }else{
+     }else{
   
-             throw new Error ('Password is not valid.')
-          }
-      }else{
+       throw new Error ('Password is not valid.')
+     }
+  }else{
         
-        throw new Error('Email is not valid.')
-      }
+    throw new Error('Email is not valid.')
+  }
 };
 
 /*------------------------------------------------------- */
