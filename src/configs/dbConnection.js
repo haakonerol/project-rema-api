@@ -1,8 +1,8 @@
 "use strict";
 /* -------------------------------------------------------
-    | PROJECT REMA API | NODEJS / EXPRESS |
+    | PROJECT REMA API | NODEJS / EXPRESS ***|
 ------------------------------------------------------- */
-//MongoDB Connection $ npm i mongoose
+//MongoDB Connection $ npm i mongoose 
 
 const mongoose = require("mongoose");
 
